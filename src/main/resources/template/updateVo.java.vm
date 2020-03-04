@@ -1,5 +1,5 @@
 package com.zhou.model.vo.req;
-#foreach($pkg in ${table.importPackages})
+import io.swagger.annotations.ApiModelProperty;#foreach($pkg in ${table.importPackages})
 #end
 #if(${swagger2})
 import io.swagger.annotations.ApiModel;

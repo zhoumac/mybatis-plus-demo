@@ -7,8 +7,6 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.converts.PostgreSqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.sun.xml.internal.bind.v2.model.core.PropertyInfo;
-import javafx.application.Application;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -38,6 +36,7 @@ public class CodeGeneratorTwo {
 
     final static String  path = System.getProperty("user.dir");
     final static String  modelPath = System.getProperty("user.dir")+"/src/main/java/com/zhou/model/vo/req/";
+    final static String  xmlPath = System.getProperty("user.dir")+"/src/main/resources/xml/";
     public static void main(String[] args) {
         generateCode();
     }
@@ -50,18 +49,19 @@ public class CodeGeneratorTwo {
     public static   void generateCode() {
         //设置需要生成的表
         String author = "周希来";
-        String[] tables ={};
+        String[] tables ={"uk_user"};
         //String packagePath = "C:/myProject/net/SpringBoot_MybatisPlus/src/test/";
         //String[] tables = codeTwoGeneratorConfig.getTables().split(",");
 
         //获取数据库连接
-        String dbUrl = "jdbc:mysql://114.55.92.111/zhou?characterEncoding=utf8";
+        String dbUrl = "jdbc:mysql://114.55.92.111:3306/zhou?useUnicode=true&allowMultiQueries=true";
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
                 .setUsername("root")
                 .setPassword("123456")
-                .setDriverName("com.mysql.cj.jdbc.Driver");
+                //.setDriverName("com.mysql.jdbc.Driver");
+                .setDriverName("com.mysql.cj.jdbc.Driver"); //mysql 8.0以上版本
                // .setSchemaName("poit_cloud");
 
         //类型转换
@@ -88,10 +88,9 @@ public class CodeGeneratorTwo {
         strategyConfig
                // .setCapitalMode(true)
                 //.setLogicDeleteFieldName("rec_status")
-                //.setEntityLombokModel(false)
                 .setNaming(NamingStrategy.underline_to_camel)
                 .setEntityBuilderModel(true)
-                .setTablePrefix(new String[] { "t_", "sys_","u_" })
+                .setTablePrefix(new String[] { "t_", "sys_","u_","m_" ,"uk_"})
                 //.setInclude("configDesc","dataCommodity")//修改替换成你需要的表名，多个表名传数组
                 .setEntityLombokModel(true)//是否使用lombok
         ;
@@ -106,7 +105,7 @@ public class CodeGeneratorTwo {
                 .setIdType(IdType.AUTO)//主键类型
                 .setFileOverride(false)//文件是否覆盖
                 .setServiceName("%sService")
-                .setSwagger2(true)//生成swagger文档
+                .setSwagger2(false)//生成swagger文档
                 .setEnableCache(true)//二级缓存
                 .setBaseColumnList(true)//columList
                 .setBaseResultMap(true)//ResultMap
@@ -125,8 +124,15 @@ public class CodeGeneratorTwo {
                 .setEntity("template/entity.java.vm")
                 .setService("template/service.java.vm");
 
-        //添加add 请求对象
+
         List<FileOutConfig> foc = new ArrayList<>();
+        foc.add(new FileOutConfig("/templates/mapper.xml.vm") {
+            // 自定义输出文件目录
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return xmlPath + tableInfo.getEntityName() + ".xml";
+            }
+        });
         //添加add 请求对象
         foc.add(new FileOutConfig("/template/addVo.java.vm") {
             @Override
