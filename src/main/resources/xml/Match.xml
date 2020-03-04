@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.mapper.MatchMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhou.entity.Match">
+        <id column="id" property="id" />
+        <result column="match_name" property="matchName" />
+        <result column="match_type" property="matchType" />
+        <result column="number" property="number" />
+        <result column="first_reward" property="firstReward" />
+        <result column="begin_condition" property="beginCondition" />
+        <result column="cost_type" property="costType" />
+        <result column="game_id" property="gameId" />
+        <result column="game_name" property="gameName" />
+        <result column="scene_Id" property="sceneId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, match_name, match_type, number, first_reward, begin_condition, cost_type, game_id, game_name, scene_Id
+    </sql>
+
+</mapper>

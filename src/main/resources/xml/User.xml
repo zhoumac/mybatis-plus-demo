@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.mapper.UserMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhou.entity.User">
+        <id column="ID" property="id" />
+        <result column="LANGUAGE" property="language" />
+        <result column="USERNAME" property="username" />
+        <result column="PASSWORD" property="password" />
+        <result column="AVATAR" property="avatar" />
+        <result column="SECURECONF" property="secureconf" />
+        <result column="EMAIL" property="email" />
+        <result column="FIRSTNAME" property="firstname" />
+        <result column="MIDNAME" property="midname" />
+        <result column="LASTNAME" property="lastname" />
+        <result column="JOBTITLE" property="jobtitle" />
+        <result column="DEPARTMENT" property="department" />
+        <result column="GENDER" property="gender" />
+        <result column="BIRTHDAY" property="birthday" />
+        <result column="NICKNAME" property="nickname" />
+        <result column="USERTYPE" property="usertype" />
+        <result column="RULENAME" property="rulename" />
+        <result column="SEARCHPROJECTID" property="searchprojectid" />
+        <result column="ORGI" property="orgi" />
+        <result column="ORGID" property="orgid" />
+        <result column="CREATER" property="creater" />
+        <result column="CREATETIME" property="createtime" />
+        <result column="MEMO" property="memo" />
+        <result column="UPDATETIME" property="updatetime" />
+        <result column="ORGAN" property="organ" />
+        <result column="MOBILE" property="mobile" />
+        <result column="passupdatetime" property="passupdatetime" />
+        <result column="sign" property="sign" />
+        <result column="del" property="del" />
+        <result column="uname" property="uname" />
+        <result column="musteditpassword" property="musteditpassword" />
+        <result column="AGENT" property="agent" />
+        <result column="SKILL" property="skill" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="fans" property="fans" />
+        <result column="follows" property="follows" />
+        <result column="integral" property="integral" />
+        <result column="lastlogintime" property="lastlogintime" />
+        <result column="status" property="status" />
+        <result column="deactivetime" property="deactivetime" />
+        <result column="title" property="title" />
+        <result column="DATASTATUS" property="datastatus" />
+        <result column="callcenter" property="callcenter" />
+        <result column="sipaccount" property="sipaccount" />
+        <result column="SUPERUSER" property="superuser" />
+        <result column="maxuser" property="maxuser" />
+        <result column="ordertype" property="ordertype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, LANGUAGE, USERNAME, PASSWORD, AVATAR, SECURECONF, EMAIL, FIRSTNAME, MIDNAME, LASTNAME, JOBTITLE, DEPARTMENT, GENDER, BIRTHDAY, NICKNAME, USERTYPE, RULENAME, SEARCHPROJECTID, ORGI, ORGID, CREATER, CREATETIME, MEMO, UPDATETIME, ORGAN, MOBILE, passupdatetime, sign, del, uname, musteditpassword, AGENT, SKILL, province, city, fans, follows, integral, lastlogintime, status, deactivetime, title, DATASTATUS, callcenter, sipaccount, SUPERUSER, maxuser, ordertype
+    </sql>
+
+</mapper>
