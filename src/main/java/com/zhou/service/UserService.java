@@ -69,7 +69,7 @@ public class UserService extends ServiceImpl<UserMapper, User>  {
             return ApiResp.builder().data(Boolean.TRUE).build();
     }
 
-    public ApiResp get(String id){
-            return ApiResp.builder().data(baseMapper.selectById(id)).build();
+    public User get(String id){
+            return baseMapper.selectById(id);
     }
 }

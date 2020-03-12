@@ -19,6 +19,7 @@ import java.io.Serializable;
 @ApiModel("返回数据")
 public class ApiResp<T> implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 
     /**
      * 返回code

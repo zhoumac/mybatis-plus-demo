@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  #编排数据库
+  mysql:
+    #找到当前目录下mysql构建镜像
+    build: ./mysql
+    #镜像名称
+    image: compose-mysql:test
+    #项目名称
+    container_name: compose-mysql
+    restart: always 
+    #端口映射
+    ports:
+      - "3300:3306"
+      - "33060:33060"
+      #将mysql目录映射到本地 应根据自己所需要映射的目录进行修改
+    volumes:
+      - "/root/mysql8/conf:/etc/mysql/conf.d"
+      - "/root/mysql8/logs:/logs"
+      - "/root/mysql8/data:/var/lib/mysql"
+    #设置编码格式
+    command: [
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
+    #设置初始化密码
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  #redis直接拉去redis镜像启动redis
+  redis:
+    image: redis:latest
+    container_name: compose-redis
+    #设置 redis 密码
+    command: redis-server --requirepass 742042@Mn
+    ports:
+      - "6378:6378"
+    volumes:
+      - "/root/redis/redis_data:/data"
+  #编排java服务器
+  java-service:
+    #找到当前目录下的java文件夹构建
+    #build: ./java
+    #镜像名称
+    image: registry.cn-shanghai.aliyuncs.com/zhou_repository/mybatis_plus:1.0.1-SNAPSHOT
+    container_name: java-service
+    extra_hosts:
+      - "zhou:114.55.92.111"
+    ports:
+      - "8000:8000"
+    environment:
+      - mysql_host=zhou:3300  
+    depends_on:
+      - mysql
+      - redis
+
+

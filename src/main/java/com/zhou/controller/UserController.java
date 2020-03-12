@@ -37,7 +37,7 @@ private UserService  userService;
 
     @ApiOperation(value ="列表" ,notes = "周希来")
     @GetMapping("/list" )
-    public ApiResp<User> list(ListUserReq req) {
+    public ApiResp list(ListUserReq req) {
 
         return userService.list(req);
 
@@ -45,7 +45,7 @@ private UserService  userService;
 
     @ApiOperation(value = "分页" ,notes = "周希来" )
     @GetMapping( "/page")
-    public ApiResp<IPage<User>> page(PageUserReq req) {
+    public ApiResp page(PageUserReq req) {
 
             return  userService.page(req);
 
@@ -53,7 +53,7 @@ private UserService  userService;
 
     @ApiOperation(value = "获取详情",notes = "周希来" )
     @GetMapping("/get" )
-    public ApiResp<User> get(BaseReq req,@RequestParam("id")String id) {
+    public User get(BaseReq req,@RequestParam("id")String id) {
 
             return  userService.get( id);
 

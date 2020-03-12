@@ -6,7 +6,7 @@ spring:
         default-property-inclusion: non_null
     datasource: 
         type: com.alibaba.druid.pool.DruidDataSource
-        url : jdbc:p6spy:mysql://114.55.92.111:3300/zxl?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+        url : jdbc:p6spy:mysql://${mysql_host}/zxl?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
         username : root
         password: root
         driver-class-name: com.p6spy.engine.spy.P6SpyDriver
